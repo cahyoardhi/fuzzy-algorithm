@@ -1,0 +1,3 @@
+import main
+import defuzzyfikasi
+import fuzzyfikasi
