@@ -19,8 +19,7 @@ def main():
     print(f'{fpinjam}\n')
     print(f'{fharga}\n')
     
-
-
+    hinferensi = inferensi(fberat,fpinjam,fharga)
 
 if __name__ == '__main__':
     main()
