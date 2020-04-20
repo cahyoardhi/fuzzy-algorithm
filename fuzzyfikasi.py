@@ -3,196 +3,138 @@ import inferensi
 import defuzzyfikasi
 
 #Fuzzy set
-fuzzy_set_berat     = ['ringan','sedang','berat']
-fuzzy_set_lpinjam   = ['sebentar','menengah','lama']
-fuzzy_set_harga     = ['murah','sedang','mahal']
+fuzzyset = {
+    'berat'     : { 'ringan'    : {'a': None, 'b' : 0.5, 'c' : 100, 'd' : 200},
+                    'sedang'    : {'a': 100, 'b' : 200, 'c' : 500, 'd' : 1000},
+                    'berat'     : {'a': 500, 'b' : 1000, 'c': 2000, 'd': None}
+                    },
 
 
-#fungsi derajat keanggotaan berat
-def fdberat(input):
-    #ringan  
-    if input >= 0.5 and input <=200:
-        if input >= 0.5 and input <= 100:
-            dberat = 1
-            sberat = fuzzy_set_berat[0]            
 
+    'lpinjaman' : { 'sebentar'  : {'a': None, 'b' : 1, 'c' : 6, 'd' : 10},
+                    'menengah'  : {'a': 6, 'b' : 10, 'c' : 12, 'd' : 15},
+                    'lama'      : {'a': 12, 'b' : 15, 'c': 24, 'd': None}
+                    },
+
+
+
+    'harga'     : { 'rendah'    : {'a': None, 'b' : 495000, 'c' : 89300000, 'd' : 178600000},
+                    'menengah'  : {'a': 89300000, 'b' : 178600000, 'c' : 445800000, 'd' : 891600000},
+                    'tinggi'    : {'a': 445800000, 'b' : 891600000, 'c': 1783200000, 'd': None}
+                    },
+
+
+
+    'bpg'       : { 'sedikit'   : {'a': None, 'b' : 25, 'c' : 50, 'd' : 60},
+                    'menengah'  : {'a': 50, 'b' : 60, 'c' : 70, 'd' : 80},
+                    'besar'     : {'a': 70, 'b' : 80, 'c': 90, 'd': None}
+                    },
+}
+
+
+
+
+
+def fberat(masukan):
+    output = {}
+
+    #ringan
+    if masukan >= fuzzyset['berat']['ringan']['b'] and masukan <= fuzzyset['berat']['ringan']['d']:
+        if masukan >= fuzzyset['berat']['ringan']['b'] and masukan <= fuzzyset['berat']['ringan']['c']:
+            output['ringan'] = 1
+        
         else:
-            dberat = (200 - input) / (200-100)
-            sberat = fuzzy_set_berat[0]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dberat < 0.5:
-                dberat = (input - 100) / (200 - 100)
-                sberat = fuzzy_set_berat[1]
-
+            output['ringan'] = (fuzzyset['berat']['ringan']['d'] - masukan) / (fuzzyset['berat']['ringan']['d'] - fuzzyset['berat']['ringan']['c'])
     
     #sedang
-    if input >= 100 and input <= 1000:
-        if input >= 200 and input <= 500:
-            dberat = 1
-            sberat = fuzzy_set_berat[1]
+    if masukan >= fuzzyset['berat']['sedang']['a'] and masukan <= fuzzyset['berat']['sedang']['d']:
+        if masukan >= fuzzyset['berat']['sedang']['b'] and masukan <= fuzzyset['berat']['sedang']['c']:
+            output['sedang'] = 1
         
-        if input >= 100 and input <= 200:
-            dberat = (input - 100) / (200 - 100)
-            sberat = fuzzy_set_berat[1]
+        if masukan >= fuzzyset['berat']['sedang']['a'] and masukan <= fuzzyset['berat']['sedang']['b']:
+            output['sedang'] = (masukan - fuzzyset['berat']['sedang']['a']) / (fuzzyset['berat']['sedang']['b'] - fuzzyset['berat']['sedang']['a'])
 
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dberat < 0.5:
-                dberat = (200 - input) / (200-100)
-                sberat = fuzzy_set_berat[0]
-        
-        if input >= 500 and input <= 1000:
-            dberat = (1000 - input) / (1000 - 500)
-            sberat = fuzzy_set_berat[1]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dberat < 0.5:
-                dberat = (input - 500) / (1000 - 500)
-                sberat = fuzzy_set_berat[2]
+        if masukan >= fuzzyset['berat']['sedang']['c'] and masukan <= fuzzyset['berat']['sedang']['d']:
+            output['sedang'] = (fuzzyset['berat']['sedang']['d'] - masukan) / (fuzzyset['berat']['sedang']['d'] - fuzzyset['berat']['sedang']['c'])
     
     #berat
-    if input >= 500 and input >= 1000:
-        if input >= 1000:
-            dberat = 1
-            sberat = fuzzy_set_berat[2]
+    if masukan >= fuzzyset['berat']['berat']['a'] and masukan <= fuzzyset['berat']['berat']['c']:
+        if masukan >= fuzzyset['berat']['berat']['b'] and masukan <= fuzzyset['berat']['berat']['c']:
+            output['berat'] = 1
         
-        if input >= input>=500 and input >= 1000:
-            dberat = (input - 500) / (1000 - 500)
-            sberat = fuzzy_set_berat[2]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dberat < 0.5:
-                dberat = (1000 - input) / (1000 - 500)
-                sberat = fuzzy_set_berat[1]
-
-
-    output = {dberat:sberat}
-    return  output
+        if masukan >= fuzzyset['berat']['berat']['a'] and masukan <= fuzzyset['berat']['berat']['b']:
+            output['berat'] = (masukan - fuzzyset['berat']['berat']['a']) / (fuzzyset['berat']['berat']['b'] - fuzzyset['berat']['berat']['a'])
+    
+    return output
 
 
 
 
 
-def fdlpinjam(input):
-    #sebentar  
-    if input >= 1 and input <= 9:
-        if input >= 1 and input <= 8:
-            dlpinjam = 1
-            slpinjam = fuzzy_set_lpinjam[0]            
+def flpinjam(masukan):
+    output = {}
 
+    #sebentar
+    if masukan >= fuzzyset['lpinjaman']['sebentar']['b'] and masukan <= fuzzyset['lpinjaman']['sebentar']['d']:
+        if masukan >= fuzzyset['lpinjaman']['sebentar']['b'] and masukan <= fuzzyset['lpinjaman']['sebentar']['c']:
+            output['sebentar'] = 1
+        
         else:
-            dlpinjam = (9 - input) / (9-8)
-            slpinjam = fuzzy_set_lpinjam[0]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            # if dlpinjam < 0.5:
-            #     dlpinjam = (input - 8) / (9 - 8)
-            #     slpinjam = fuzzy_set_lpinjam[1]
-
+            output['sebentar'] = (fuzzyset['lpinjaman']['sebentar']['d'] - masukan) / (fuzzyset['lpinjaman']['sebentar']['d'] - fuzzyset['lpinjaman']['sebentar']['c'])
     
     #menengah
-    if input >= 8 and input <= 17:
-        if input >= 9 and input <= 16:
-            dlpinjam = 1
-            slpinjam = fuzzy_set_lpinjam[1]
+    if masukan >= fuzzyset['lpinjaman']['menengah']['a'] and masukan <= fuzzyset['lpinjaman']['menengah']['d']:
+        if masukan >= fuzzyset['lpinjaman']['menengah']['b'] and masukan <= fuzzyset['lpinjaman']['menengah']['c']:
+            output['menengah'] = 1
         
-        # if input >= 8 and input <= 9:
-        #     dlpinjam = (input - 8) / (9 - 8)
-        #     slpinjam = fuzzy_set_lpinjam[1]
+        if masukan >= fuzzyset['lpinjaman']['menengah']['a'] and masukan <= fuzzyset['lpinjaman']['menengah']['b']:
+            output['menengah'] = (masukan - fuzzyset['lpinjaman']['menengah']['a']) / (fuzzyset['lpinjaman']['menengah']['b'] - fuzzyset['lpinjaman']['menengah']['a'])
 
-            # #Jika derajat kurang dari 0.5, ganti keanggotaan
-            # if dlpinjam < 0.5:
-            #     slpinjam = (9 - input) / (9 - 8)
-            #     slpinjam = fuzzy_set_lpinjam[0]
-        
-        # if input >= 16 and input <= 17:
-        #     dlpinjam = (17 - input) / (17 - 16)
-        #     slpinjam = fuzzy_set_lpinjam[1]
-
-            # #Jika derajat kurang dari 0.5, ganti keanggotaan
-            # if dlpinjam < 0.5:
-            #     dlpinjam = (input - 16) / (17 - 16)
-            #     slpinjam = fuzzy_set_lpinjam[2]
+        if masukan >= fuzzyset['lpinjaman']['menengah']['c'] and masukan <= fuzzyset['lpinjaman']['menengah']['d']:
+            output['menengah'] = (fuzzyset['lpinjaman']['menengah']['d'] - masukan) / (fuzzyset['lpinjaman']['menengah']['d'] - fuzzyset['lpinjaman']['menengah']['c'])
     
     #lama
-    if input >= 16 and input <= 24:
-        if input >= 17 and input <= 24:
-            dlpinjam = 1
-            slpinjam = fuzzy_set_lpinjam[2]
+    if masukan >= fuzzyset['lpinjaman']['lama']['a'] and masukan <= fuzzyset['lpinjaman']['lama']['c']:
+        if masukan >= fuzzyset['lpinjaman']['lama']['b'] and masukan <= fuzzyset['lpinjaman']['lama']['c']:
+            output['lama'] = 1
         
-        # if input >= 16 and input <= 17:
-        #     dlpinjam = (input - 16) / (17 - 16)
-        #     slpinjam = fuzzy_set_lpinjam[2]
-
-            # #Jika derajat kurang dari 0.5, ganti keanggotaan
-            # if dlpinjam < 0.5:
-            #     dlpinjam = (17 - input) / (17 - 16)
-            #     slpinjam = fuzzy_set_lpinjam[1]
-
-
-    output = {dlpinjam:slpinjam}
-    return  output
+        if masukan >= fuzzyset['lpinjaman']['lama']['a'] and masukan <= fuzzyset['lpinjaman']['lama']['b']:
+            output['lama'] = (masukan - fuzzyset['lpinjaman']['lama']['a']) / (fuzzyset['lpinjaman']['lama']['b'] - fuzzyset['lpinjaman']['lama']['a'])
+    
+    return output
 
 
 
 
 
-def fdharga(input):
-    #murah  
-    if input >= 495000 and input <= 89300000:
-        if input >= 495000 and input <= 89300000:
-            dharga = 1
-            sharga = fuzzy_set_harga[0]            
+def fharga(masukan):
+    output = {}
 
+    #rendah
+    if masukan >= fuzzyset['harga']['rendah']['b'] and masukan <= fuzzyset['harga']['rendah']['d']:
+        if masukan >= fuzzyset['harga']['rendah']['b'] and masukan <= fuzzyset['harga']['rendah']['c']:
+            output['rendah'] = 1
+        
         else:
-            dharga = (178600000 - input) / (178600000 - 89300000)
-            sharga = fuzzy_set_lpinjam[0]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dharga < 0.5:
-                dharga = (input - 89300000) / (178600000 - 89300000)
-                sharga = fuzzy_set_harga[1]
-
+            output['rendah'] = (fuzzyset['harga']['rendah']['d'] - masukan) / (fuzzyset['harga']['rendah']['d'] - fuzzyset['harga']['rendah']['c'])
     
-    #sedang
-    if input >= 889300000 and input <= 891600000:
-        if input >= 178600000 and input <= 445800000:
-            dharga = 1
-            sharga = fuzzy_set_harga[1]
+    #menengah
+    if masukan >= fuzzyset['harga']['menengah']['a'] and masukan <= fuzzyset['harga']['menengah']['d']:
+        if masukan >= fuzzyset['harga']['menengah']['b'] and masukan <= fuzzyset['harga']['menengah']['c']:
+            output['menengah'] = 1
         
-        if input >= 89300000 and input <= 178600000:
-            dharga = (input - 89300000) / (178600000 - 89300000)
-            sharga = fuzzy_set_harga[1]
+        if masukan >= fuzzyset['harga']['menengah']['a'] and masukan <= fuzzyset['harga']['menengah']['b']:
+            output['menengah'] = (masukan - fuzzyset['harga']['menengah']['a']) / (fuzzyset['harga']['menengah']['b'] - fuzzyset['harga']['menengah']['a'])
 
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dharga < 0.5:
-                dharga = (178600000 - input) / (178600000 - 89300000)
-                sharga = fuzzy_set_harga[0]
-        
-        if input >= 445800000 and input <= 891600000:
-            dharga = (891600000 - input) / (891600000 - 445800000)
-            sharga = fuzzy_set_harga[1]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dharga < 0.5:
-                sharga = (input - 445800000) / (891600000 - 445800000)
-                dharga = fuzzy_set_harga[2]
+        if masukan >= fuzzyset['harga']['menengah']['c'] and masukan <= fuzzyset['harga']['menengah']['d']:
+            output['menengah'] = (fuzzyset['harga']['menengah']['d'] - masukan) / (fuzzyset['harga']['menengah']['d'] - fuzzyset['harga']['menengah']['c'])
     
-    #lama
-    if input >= 445800000 and input >= 891600000:
-        if input >= 891600000:
-            dharga = 1
-            sharga = fuzzy_set_harga[2]
+    #tinggi
+    if masukan >= fuzzyset['harga']['tinggi']['a'] and masukan <= fuzzyset['harga']['tinggi']['c']:
+        if masukan >= fuzzyset['harga']['tinggi']['b'] and masukan <= fuzzyset['harga']['tinggi']['c']:
+            output['tinggi'] = 1
         
-        if input >= 445800000 and input <= 891600000:
-            dharga = (input - 445800000) / (891600000 - 445800000)
-            sharga = fuzzy_set_harga[2]
-
-            #Jika derajat kurang dari 0.5, ganti keanggotaan
-            if dharga < 0.5:
-                dharga = (891600000 - input) / (891600000 - 445800000)
-                sharga = fuzzy_set_harga[1]
-
-
-    output = {dharga:sharga}
-    return  output
+        if masukan >= fuzzyset['harga']['tinggi']['a'] and masukan <= fuzzyset['harga']['tinggi']['b']:
+            output['tinggi'] = (masukan - fuzzyset['harga']['tinggi']['a']) / (fuzzyset['harga']['tinggi']['b'] - fuzzyset['harga']['tinggi']['a'])
+    
+    return output
