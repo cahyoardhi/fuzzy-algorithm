@@ -138,3 +138,14 @@ def fharga(masukan):
             output['tinggi'] = (masukan - fuzzyset['harga']['tinggi']['a']) / (fuzzyset['harga']['tinggi']['b'] - fuzzyset['harga']['tinggi']['a'])
     
     return output
+
+
+
+
+
+def outputhasil(berat,pinjam,harga):
+    print('\n\nHASIL FUZZYFIKASI:')
+    for i,((bk,bv), (pk,pv), (hk,hv)) in enumerate(zip(berat.items(), pinjam.items(), harga.items())):
+        print(f'Berat\t{i+1}: {bk}\t {bv}')
+        print(f'pinjam\t{i+1}: {pk}\t {pv}')
+        print(f'harga\t{i+1}: {hk}\t {hv}\n')

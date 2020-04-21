@@ -13,13 +13,14 @@ def main():
     fberat  = fuzzyfikasi.fberat(berat)    
     fpinjam = fuzzyfikasi.flpinjam(lpinjam)    
     fharga  = fuzzyfikasi.fharga(harga)
+
+    fuzzyfikasi.outputhasil(fberat,fpinjam,fharga)
+    out = inferensi.finferensi(fberat,fpinjam,fharga)
+    print(out)
     
-    print('\n\nBerikut ini status derajat keanggotaan tiap inputan:')
-    print(f'{fberat}\n')
-    print(f'{fpinjam}\n')
-    print(f'{fharga}\n')
     
-    hinferensi = inferensi(fberat,fpinjam,fharga)
+
+
 
 if __name__ == '__main__':
     main()
