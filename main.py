@@ -10,13 +10,13 @@ def main():
     lpinjam = int(input('lama pinjam (bulan)\t: '))
     harga   = int(input('harga (rupiah)\t\t: '))
 
-    fberat  = fuzzyfikasi.fberat(berat)    
-    fpinjam = fuzzyfikasi.flpinjam(lpinjam)    
-    fharga  = fuzzyfikasi.fharga(harga)
+    fberat      = fuzzyfikasi.ffuzzyfikasi(berat,'berat')
+    fpinjam     = fuzzyfikasi.ffuzzyfikasi(lpinjam,'lpinjam')
+    fharga      = fuzzyfikasi.ffuzzyfikasi(harga,'harga')
+    hinferensi  = inferensi.finferensi(fberat,fpinjam,fharga)
 
     fuzzyfikasi.outputhasil(fberat,fpinjam,fharga)
-    out = inferensi.finferensi(fberat,fpinjam,fharga)
-    print(out)
+    print(hinferensi)
     
     
 

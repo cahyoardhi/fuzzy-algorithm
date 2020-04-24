@@ -1,15 +1,15 @@
-Ifuzzy_set = {
+inputSet = {
     'CPU': ['Lambat', 'Sedang', 'Cepat'],
     'Core': ['Kurang Optimal', 'Optimal', 'Sangat Optimal'],
     'RAM': ['Kecil', 'Standar', 'Besar']
 }
 
-Ofuzzy_set = {
+outputSet = {
     'Kelayakan': ['Biasa', 'Standar', 'Bagus']
 }
 
 DataMaxEntry = {
-    'CPU': 4,
+    'CPU': 5,
     'Core': 16,
     'RAM': 32
 }
@@ -51,31 +51,60 @@ def cari_nilai_fuzzifikasi(key, category, value):
                 fuzzy_1_3 = 0
             return ["Cepat", round(fuzzy_1_3, 1)]
 
+    # elif key == "Core":
+    #     if category == 'Kurang Optimal':
+    #         if 0 <= value <= 1:
+    #             fuzzy_2_1 = 1
+    #         elif 1 < value < 2:
+    #             fuzzy_2_1 = (2 - value) / (2-1)
+    #         else:
+    #             fuzzy_2_1 = 0
+    #         return ["Kurang Optimal", fuzzy_2_1]
+
+    #     elif category == "Optimal":
+    #         if 1 < value < 2:
+    #             fuzzy_2_2 = (value - 1) / (2 - 1)
+    #         elif 2 <= value <= 4:
+    #             fuzzy_2_2 = 1
+    #         elif 4 < value < 5:
+    #             fuzzy_2_2 = (5 - value) / (5 - 4)
+    #         else:
+    #             fuzzy_2_2 = 0
+    #         return ["Optimal", fuzzy_2_2]
+
+    #     if category == "Sangat Optimal":
+    #         if 4 < value < 5:
+    #             fuzzy_2_3 = (value - 4) / (5 - 4)
+    #         elif value >= 5:
+    #             fuzzy_2_3 = 1
+    #         else:
+    #             fuzzy_2_3 = 0
+    #         return ["Sangat Optimal", fuzzy_2_3]
     elif key == "Core":
         if category == 'Kurang Optimal':
-            if 0 <= value <= 1:
+            if 0 <= value <= 2:
                 fuzzy_2_1 = 1
-            elif 1 < value < 2:
-                fuzzy_2_1 = (2 - value) / (2-1)
+            elif 2 < value < 4:
+                fuzzy_2_1 = (4 - value) / (4 - 1)
             else:
                 fuzzy_2_1 = 0
             return ["Kurang Optimal", fuzzy_2_1]
 
         elif category == "Optimal":
-            if 1 < value < 2:
+            if 2 < value < 4:
                 fuzzy_2_2 = (value - 1) / (2 - 1)
-            elif 2 <= value <= 4:
+            elif 4 <= value <= 6:
                 fuzzy_2_2 = 1
-            elif 4 < value < 5:
-                fuzzy_2_2 = (5 - value) / (5 - 4)
+            elif 6 < value < 8:
+                fuzzy_2_2 = (8 - value) / (8 - 6)
             else:
                 fuzzy_2_2 = 0
             return ["Optimal", fuzzy_2_2]
 
         if category == "Sangat Optimal":
-            if 4 < value < 5:
-                fuzzy_2_3 = (value - 4) / (5 - 4)
-            elif value >= 5:
+            if 6 < value < 8:
+                fuzzy_2_3 = (value - 6) / (8 - 6)
+            elif value >= 8:
                 fuzzy_2_3 = 1
             else:
                 fuzzy_2_3 = 0

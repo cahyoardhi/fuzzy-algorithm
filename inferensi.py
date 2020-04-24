@@ -114,8 +114,7 @@ def finferensi(berat,pinjam,harga):
         #rule 27
         if bk == 'berat' and pk == 'lama' and hk =='tinggi':
             output['besar'] = min(bv, pv, hv)
-
-
+            
 
     return output
 

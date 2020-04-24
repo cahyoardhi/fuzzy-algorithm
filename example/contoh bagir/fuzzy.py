@@ -27,22 +27,34 @@ def check(key, data):
 
 def data_input():
     dataUser = []
-    for key in rules.Ifuzzy_set:
-        if key == 'CPU':
-            entry = float(input(f'Masukkan {key}: '))
-        else:
-            entry = int(input(f'Masukkan {key}: '))
-        if check(key, entry):
-            dataUser.append(entry)
-        else:
-            print("Maaf inputan anda salah!")
-            entry = float(input(f'Masukkan {key}: '))
+    for key in rules.inputSet:
+        # if key == 'CPU':
+        #     entry = float(input(f'Masukkan {key}: '))
+        # else:
+        #     entry = int(input(f'Masukkan {key}: '))
+        # if check(key, entry):
+        #     dataUser.append(entry)
+        # else:
+        #     print("Maaf inputan anda salah!")
+        #     entry = float(input(f'Masukkan {key}: '))
+        while True:
+            if key == 'CPU':
+                entry = float(input(f'Masukkan {key}: '))
+            else:
+                entry = int(input(f'Masukkan {key}: '))
+
+            if check(key, entry):
+                dataUser.append(entry)
+                break
+            else:
+                True
+
     return dataUser
 
 
 def fuzzifikasi(data, i):
     fuzzy = []
-    for keys, values in rules.Ifuzzy_set.items():
+    for keys, values in rules.inputSet.items():
         for value in values:
             x = rules.cari_nilai_fuzzifikasi(keys, value, data[i])
             fuzzy.append(x)
@@ -60,18 +72,66 @@ def inferensi(cpu, core, ram):
     return inferens
 
 
-def defuzzifikasi(biasa, bagus, sample):
-    tempBiasa, tempBagus, x, y = (0 for i in range(4))
-    for i in range(0, 101, sample):
-        if i <= 60:
-            tempBiasa += i
-            x += 1
-        else:
-            tempBagus += i
-            y += 1
+def defuzzifikasi(biasa, bagus, sampleTitik):
+    # tempBiasa, tempBagus, x, y = (0 for i in range(4))
 
-    x -= 1
-    return ((tempBiasa * biasa) + (tempBagus * bagus)) / ((biasa * x) + (bagus * y))
+    # limitSetBiasa, limitSetBagus = 60, 60
+    # # Kelayakan Biasa
+    # if 0.1 <= biasa < 0.2:
+    #     limitSetBiasa = 67
+    # elif 0.2 <= biasa < 0.3:
+    #     limitSetBiasa = 65
+    # elif 0.3 <= biasa < 0.4:
+    #     limitSetBiasa = 62
+    # elif 0.4 <= biasa < 0.5:
+    #     limitSetBiasa = 61
+    # elif biasa >= 0.5:
+    #     limitSetBiasa = 60
+
+    # # Kelayakan Bagus
+    # if 0.1 <= bagus < 0.2:
+    #     limitSetBagus = 53
+    # elif 0.2 <= bagus < 0.3:
+    #     limitSetBagus = 55
+    # elif 0.3 <= bagus < 0.4:
+    #     limitSetBagus = 57
+    # elif 0.4 <= bagus < 0.5:
+    #     limitSetBagus = 59
+    # elif bagus >= 0.5:
+    #     limitSetBagus = 60
+
+    hasil, cobaBiasa, cobaBagus, k, l = 0, 0, 0, 0, 0
+    for i in range(0, 101, sampleTitik):
+        if i == 0:
+            pass
+        elif i <= 60:  # Nilai kelayakan Biasa
+            if i == 60 and biasa > 0.5:
+                cobaBiasa = (70 - 60) / 20
+                cobaBiasa *= 60
+                hasil += cobaBiasa
+                # k += 1
+            else:
+                cobaBiasa = i * biasa
+                hasil += cobaBiasa
+                k += 1
+        else:  # Nilai kelayakan Bagus
+            cobaBagus = i * bagus
+            hasil += cobaBagus
+            l += 1
+    hasil = hasil / ((biasa * k) + (bagus * l))
+    return hasil
+
+    # useSample = int(100 / sampleTitik)
+    # for i in range(0, 101, useSample):
+    #     if i <= 60:
+    #         tempBiasa += i
+    #         x += 1
+    #     else:
+    #         tempBagus += i
+    #         y += 1
+
+    # x -= 1
+    # return ((tempBiasa * biasa) + (tempBagus * bagus)) / ((biasa * x) + (bagus * y))
 
 
 if __name__ == "__main__":
@@ -157,16 +217,22 @@ if __name__ == "__main__":
     # Fuzzifikasi
     j = 0
     print(f'\nNilai Fuzzifikasi:')
-    for keys, values in rules.Ifuzzy_set.items():
+    for keys, values in rules.inputSet.items():
         print(f'{keys}: ')
         for value in values:
-            if nilai[j] != 0:
+            # hilangkan nilai[j][1] jika ingin tau yg dimasukkan ke inferense
+            if nilai[j] != 0 and nilai[j][1] != 0:
                 print(f'{value}: {nilai[j]}')
             j += 1
 
     # Inferensi
     temp, temp2, hasilAkhirInferensi = ([] for i in range(3))
     nilaiInferensi = inferensi(cpu, core, ram)
+
+    # # Ini Buat NgeCEK doang (nilai inference)
+    # for data in nilaiInferensi:
+    #     if data[1] != 0:
+    #         print(data)
 
     for NK, nilai in nilaiInferensi:
         if NK == "Biasa":
@@ -183,14 +249,15 @@ if __name__ == "__main__":
     ]
     print(f'\nHasil Inferensi: {hasilAkhirInferensi}\n')
 
-    while True:
-        sampleTitik = int(
-            input("Masukkan Sample Titik dengan Syarat dapat dibagi 10: "))
-        if sampleTitik % 10 != 0:
-            print("Maaf inputan Anda Salah!")
-        else:
-            break
+    # while True:
+    #     sampleTitik = int(
+    #         input("Masukkan Sample Titik dengan Syarat dapat dibagi 10: "))
+    #     if sampleTitik % 10 != 0:
+    #         print("Maaf inputan Anda Salah!")
+    #     else:
+    #         break
 
+    sampleTitik = 10  # Sample titik diberikan nilai 10
     # Defuzzifikasi
     nilaiDefuzzifikasi = defuzzifikasi(
         inferensiBiasa, inferensiBagus, sampleTitik)
