@@ -161,13 +161,17 @@ def finferensi(berat, pinjam, harga):
         if li == 'kecil':
             tkecil.append(de)
         else:
-            tbesar.append(de)
+            tbesar.append(de)    
 
+    if tkecil == []:
+        tkecil = [0,0]
+
+    elif tbesar == []:
+        tbesar = [0,0]
+    
     kecil = max(tkecil)
     besar = max(tbesar)
-
+    
     output = dict(kecil=kecil,besar=besar)
-
-
 
     return output

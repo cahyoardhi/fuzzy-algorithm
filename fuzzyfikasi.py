@@ -20,7 +20,7 @@ def ffuzzyfikasi(masukan,jenis):
         fuzzyset = {
             'input'     : { 'keanggotaan1'  : {'a': 1, 'b' : 1, 'c' : 6, 'd' : 10},
                             'keanggotaan2'  : {'a': 6, 'b' : 10, 'c' : 12, 'd' : 15},
-                            'keanggotaan3'  : {'a': 12, 'b' : 15, 'c': 24, 'd': 24}
+                            'keanggotaan3'  : {'a': 12, 'b' : 15, 'c': 24, 'd': 30}
                             },
 
 

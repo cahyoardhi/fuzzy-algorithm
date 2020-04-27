@@ -15,6 +15,10 @@ def main():
     lpinjam = int(input('lama pinjam (bulan)\t: '))
     harga   = int(input('harga (rupiah)\t\t: '))
 
+    # berat = 750
+    # lpinjam = 24
+    # harga = 800
+
     fberat = fuzzyfikasi.ffuzzyfikasi(berat, 'berat')
     fpinjam = fuzzyfikasi.ffuzzyfikasi(lpinjam, 'lpinjam')
     fharga = fuzzyfikasi.ffuzzyfikasi(harga, 'harga')

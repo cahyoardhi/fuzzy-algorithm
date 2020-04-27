@@ -7,7 +7,7 @@ def fdefuzzyfikasi(inputan):
 
     tempbesar, tempkecil, x, y = (0 for i in range(4))
     for i in range(20,91):
-        if i <= 65:
+        if i <= 60:
             tempkecil += i
             x += 1
         else:
