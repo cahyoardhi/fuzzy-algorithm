@@ -1,52 +1,52 @@
-1.  If emas ringan, lama pinjaman sebentar, harga rendah,   maka => kecil (sedikit)
+1.  If emas ringan, lama pinjaman sebentar, harga rendah,   maka => kecil
 
-2.  If emas ringan, lama pinjaman sebentar, harga menengah, maka => kecil (sedikit)
+2.  If emas ringan, lama pinjaman sebentar, harga menengah, maka => kecil
 
-3.  If emas ringan, lama pinjaman sebentar, harga tinggi,   maka => kecil (sedikit)
+3.  If emas ringan, lama pinjaman sebentar, harga tinggi,   maka => kecil
 
-4.  If emas ringan, lama pinjaman menengah, harga rendah,   maka => kecil (sedikit)
+4.  If emas ringan, lama pinjaman menengah, harga rendah,   maka => kecil
 
-5.  If emas ringan, lama pinjaman menengah, harga menengah, maka => kecil (sedikit)
+5.  If emas ringan, lama pinjaman menengah, harga menengah, maka => kecil
 
-6.  If emas ringan, lama pinjaman menengah, harga tinggi,   maka => menengah
+6.  If emas ringan, lama pinjaman menengah, harga tinggi,   maka => kecil
 
-7.  If emas ringan, lama pinjaman lama,     harga rendah,   maka => menengah
+7.  If emas ringan, lama pinjaman lama,     harga rendah,   maka => besar
 
-8.  If emas ringan, lama pinjaman lama,     harga menengah, maka => menengah
+8.  If emas ringan, lama pinjaman lama,     harga menengah, maka => besar
 
 9.  If emas ringan, lama pinjaman lama,     harga tinggi,   maka => besar
 
-10. If emas sedang, lama pinjaman sebentar, harga rendah,   maka => kecil (sedikit)
+10. If emas sedang, lama pinjaman sebentar, harga rendah,   maka => kecil
 
-11. If emas sedang, lama pinjaman sebentar, harga menengah, maka => kecil (sedikit)
+11. If emas sedang, lama pinjaman sebentar, harga menengah, maka => kecil
 
-12. If emas sedang, lama pinjaman sebentar, harga tinggi,   maka => kecil (sedikit)
+12. If emas sedang, lama pinjaman sebentar, harga tinggi,   maka => kecil
 
-13. If emas sedang, lama pinjaman menengah, harga rendah,   maka => kecil (sedikit)
+13. If emas sedang, lama pinjaman menengah, harga rendah,   maka => besar
 
-14. If emas sedang, lama pinjaman menengah, harga menengah, maka => menengah
+14. If emas sedang, lama pinjaman menengah, harga menengah, maka => kecil
 
-15. If emas sedang, lama pinjaman menengah, harga tinggi,   maka => menengah
+15. If emas sedang, lama pinjaman menengah, harga tinggi,   maka => besar
 
-16. If emas sedang, lama pinjaman lama,     harga rendah,   maka => menengah
+16. If emas sedang, lama pinjaman lama,     harga rendah,   maka => besar
 
-17. If emas sedang, lama pinjaman lama,     harga menengah, maka => menengah
+17. If emas sedang, lama pinjaman lama,     harga menengah, maka => besar
 
 18. If emas sedang, lama pinjaman lama,     harga tinggi,   maka => besar
 
-19. If emas berat,  lama pinjaman sebentar, harga rendah,   maka => kecil (sedikit)
+19. If emas berat,  lama pinjaman sebentar, harga rendah,   maka => kecil
 
-20. If emas berat,  lama pinjaman sebentar, harga menengah, maka => kecil (sedikit)
+20. If emas berat,  lama pinjaman sebentar, harga menengah, maka => kecil
 
-21. If emas berat,  lama pinjaman sebentar, harga tinggi,   maka => kecil (sedikit)
+21. If emas berat,  lama pinjaman sebentar, harga tinggi,   maka => kecil
 
-22. If emas berat,  lama pinjaman menengah, harga rendah,   maka => menengah
+22. If emas berat,  lama pinjaman menengah, harga rendah,   maka => besar
 
-23. If emas berat,  lama pinjaman menengah, harga menengah, maka => menengah
+23. If emas berat,  lama pinjaman menengah, harga menengah, maka => besar
 
 24. If emas berat,  lama pinjaman menengah, harga tinggi,   maka => besar
 
-25. If emas berat,  lama pinjaman lama,     harga rendah,   maka => menengah
+25. If emas berat,  lama pinjaman lama,     harga rendah,   maka => besar
 
 26. If emas berat,  lama pinjaman lama,     harga menengah, maka => besar
 

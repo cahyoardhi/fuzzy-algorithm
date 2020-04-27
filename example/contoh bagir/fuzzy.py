@@ -73,32 +73,6 @@ def inferensi(cpu, core, ram):
 
 
 def defuzzifikasi(biasa, bagus, sampleTitik):
-    # tempBiasa, tempBagus, x, y = (0 for i in range(4))
-
-    # limitSetBiasa, limitSetBagus = 60, 60
-    # # Kelayakan Biasa
-    # if 0.1 <= biasa < 0.2:
-    #     limitSetBiasa = 67
-    # elif 0.2 <= biasa < 0.3:
-    #     limitSetBiasa = 65
-    # elif 0.3 <= biasa < 0.4:
-    #     limitSetBiasa = 62
-    # elif 0.4 <= biasa < 0.5:
-    #     limitSetBiasa = 61
-    # elif biasa >= 0.5:
-    #     limitSetBiasa = 60
-
-    # # Kelayakan Bagus
-    # if 0.1 <= bagus < 0.2:
-    #     limitSetBagus = 53
-    # elif 0.2 <= bagus < 0.3:
-    #     limitSetBagus = 55
-    # elif 0.3 <= bagus < 0.4:
-    #     limitSetBagus = 57
-    # elif 0.4 <= bagus < 0.5:
-    #     limitSetBagus = 59
-    # elif bagus >= 0.5:
-    #     limitSetBagus = 60
 
     hasil, cobaBiasa, cobaBagus, k, l = 0, 0, 0, 0, 0
     for i in range(0, 101, sampleTitik):
@@ -121,17 +95,7 @@ def defuzzifikasi(biasa, bagus, sampleTitik):
     hasil = hasil / ((biasa * k) + (bagus * l))
     return hasil
 
-    # useSample = int(100 / sampleTitik)
-    # for i in range(0, 101, useSample):
-    #     if i <= 60:
-    #         tempBiasa += i
-    #         x += 1
-    #     else:
-    #         tempBagus += i
-    #         y += 1
-
-    # x -= 1
-    # return ((tempBiasa * biasa) + (tempBagus * bagus)) / ((biasa * x) + (bagus * y))
+  
 
 
 if __name__ == "__main__":
