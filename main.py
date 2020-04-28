@@ -45,6 +45,8 @@ def main():
     
     print(f'Total besaran yang diterima adalah Rp {int(hdefuzzyfikasi*harga)}\n')
 
+    input('\n\nTEKAN SEMBARANG TOMBOL UNTUK KELUAR\n\n')
+
 
 
 
