@@ -34,5 +34,5 @@ missing module named vms_lib - imported by platform (delayed, conditional, optio
 missing module named termios - imported by tty (top-level), C:\Programming\Artificial Intelligence\fuzzy-algorithm\main.py (top-level), getpass (optional)
 missing module named grp - imported by shutil (optional), tarfile (optional), C:\Programming\Artificial Intelligence\fuzzy-algorithm\main.py (top-level)
 missing module named org - imported by pickle (optional), C:\Programming\Artificial Intelligence\fuzzy-algorithm\main.py (top-level)
-missing module named pwd - imported by posixpath (delayed, conditional), shutil (optional), tarfile (optional), http.server (delayed, optional), webbrowser (delayed), C:\Programming\Artificial Intelligence\fuzzy-algorithm\main.py (top-level), netrc (delayed, conditional), getpass (delayed)
 missing module named 'org.python' - imported by copy (optional), C:\Programming\Artificial Intelligence\fuzzy-algorithm\main.py (top-level), xml.sax (delayed, conditional)
+missing module named pwd - imported by posixpath (delayed, conditional), shutil (optional), tarfile (optional), http.server (delayed, optional), webbrowser (delayed), C:\Programming\Artificial Intelligence\fuzzy-algorithm\main.py (top-level), netrc (delayed, conditional), getpass (delayed)

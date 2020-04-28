@@ -5,7 +5,7 @@ def ffuzzyfikasi(masukan,jenis):
         fuzzyset = {
             'input'     : { 'keanggotaan1'  : {'a': 0.5, 'b' : 0.5, 'c' : 100, 'd' : 200},
                             'keanggotaan2'  : {'a': 100, 'b' : 200, 'c' : 500, 'd' : 1000},
-                            'keanggotaan3'  : {'a': 500, 'b' : 1000, 'c': 2000, 'd': 2000}
+                            'keanggotaan3'  : {'a': 500, 'b' : 1000, 'c': 2000, 'd': 2001}
                             },
 
 
@@ -20,7 +20,7 @@ def ffuzzyfikasi(masukan,jenis):
         fuzzyset = {
             'input'     : { 'keanggotaan1'  : {'a': 1, 'b' : 1, 'c' : 6, 'd' : 10},
                             'keanggotaan2'  : {'a': 6, 'b' : 10, 'c' : 12, 'd' : 15},
-                            'keanggotaan3'  : {'a': 12, 'b' : 15, 'c': 24, 'd': 30}
+                            'keanggotaan3'  : {'a': 12, 'b' : 15, 'c': 24, 'd': 23}
                             },
 
 
@@ -35,7 +35,7 @@ def ffuzzyfikasi(masukan,jenis):
         fuzzyset = {
             'input'     : { 'keanggotaan1'  : {'a': 495000, 'b' : 495000, 'c' : 89300000, 'd' : 178600000},
                             'keanggotaan2'  : {'a': 89300000, 'b' : 178600000, 'c' : 445800000, 'd' : 891600000},
-                            'keanggotaan3'  : {'a': 445800000, 'b' : 891600000, 'c': 1783200000, 'd': 1783200000}
+                            'keanggotaan3'  : {'a': 445800000, 'b' : 891600000, 'c': 1783200000, 'd': 1783200001}
                             },
 
 
